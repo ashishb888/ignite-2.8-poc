@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: ignite-transient
+
+logging:
+  file: /var/tmp/logs/ignite-transient/ignite-transient
+  level:
+    root: INFO
+    poc.ignite: debug
+
