@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: ignite-date-timestamp
+
+logging:
+  file: /var/tmp/logs/ignite-date-timestamp/ignite-date-timestamp
+  level:
+    root: INFO
+    poc.ignite: debug
+
