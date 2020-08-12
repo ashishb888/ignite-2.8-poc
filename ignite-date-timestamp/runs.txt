@@ -1,0 +1,23 @@
+Run1: Millis/seconds from 80s converted to date/timestamp
+
+ashish@LAPTOP-0CGC34A5:~$ $IGNITE_HOME/bin/sqlline.sh --verbose=true -u jdbc:ignite:thin://localhost:10800
+
+0: jdbc:ignite:thin://localhost:10800> select * from "IP".person;
+
+ID    2
+NAME  person2
+LD    Wed Apr 29 00:00:00 IST 2020
+LDT   2020-04-29 15:12:43.0
+D1    Wed Apr 29 00:00:00 IST 2020
+D2    Wed Apr 29 00:00:00 IST 2020
+T1    2020-04-29 15:12:43.0
+T2    2020-04-29 20:42:43.0
+
+ID    4
+NAME  person4
+LD    Wed Apr 29 00:00:00 IST 2020
+LDT   2020-04-29 15:12:43.0
+D1    Wed Apr 29 00:00:00 IST 2020
+D2    Wed Apr 29 00:00:00 IST 2020
+T1    2020-04-29 15:12:43.0
+T2    2020-04-29 20:42:43.0
