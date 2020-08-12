@@ -3,7 +3,6 @@ package poc.ignite.utils;
 import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 
@@ -27,7 +26,7 @@ public class DateTimeUtils {
 	}
 
 	public static String ofPattern(int seconds) throws Exception {
-		return ofPatternDate(toLocalDate(seconds));
+		return ofPatternTimestamp(toLocalDate(seconds));
 	}
 
 	public static LocalDateTime toLocalDate(int seconds) {
@@ -82,7 +81,7 @@ public class DateTimeUtils {
 
 	public static long toMillis(int seconds) throws Exception {
 		try {
-			return parseDate(ofPattern(seconds)).atStartOfDay(ZoneId.systemDefault()).toEpochSecond() * 1000;
+			return parseTimstamp(ofPattern(seconds)).toEpochSecond(ZoneOffset.of("+05:30")) * 1000;
 		} catch (Exception e) {
 			throw e;
 		}
