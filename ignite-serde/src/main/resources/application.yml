@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: ignite-serde
+
+logging:
+  file: /var/tmp/logs/ignite-serde/ignite-serde
+  level:
+    root: INFO
+    poc.ignite: debug
+
