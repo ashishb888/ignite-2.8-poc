@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: ignite-server
+
+logging:
+  file: /var/tmp/logs/ignite-server/ignite-server
+  level:
+    root: INFO
+    poc.ignite: debug
+
