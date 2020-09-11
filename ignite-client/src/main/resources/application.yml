@@ -2,6 +2,8 @@ spring:
   application:
     name: ignite-client
 
+server:  port: 9090
+  
 logging:
   file: /var/tmp/logs/ignite-client/ignite-client
   level:

@@ -21,7 +21,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class BeansConfig {
 
-	@Bean
+	// @Bean
 	public Ignite ignite() {
 		log.info("ignite bean service");
 
@@ -50,7 +50,6 @@ public class BeansConfig {
 			storageCfg.getDefaultDataRegionConfiguration().setMaxSize(256 * 1024 * 1024);
 
 			igniteConfiguration.setDataStorageConfiguration(storageCfg);
-
 			igniteConfiguration.setFailureDetectionTimeout(90000);
 
 			TcpCommunicationSpi commSpi = new TcpCommunicationSpi();
