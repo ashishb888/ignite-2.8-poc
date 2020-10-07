@@ -55,16 +55,16 @@ public class CacheService {
 
 		SqlFieldsQuery allKeys = new SqlFieldsQuery("select _key from Person");
 		try (QueryCursor<List<?>> cursor = personCache.query(allKeys)) {
-			for (List<?> row : cursor) {
-				log.debug("key: " + row.get(0));
-			}
+			cursor.forEach(r -> {
+				log.debug("SFQ key: " + r.get(0));
+			});
 		}
 
 		ScanQuery<Integer, Person> sq = new ScanQuery<>(null);
 		try (QueryCursor<Cache.Entry<Integer, Person>> cursor = personCache.query(sq)) {
-			for (Cache.Entry<Integer, Person> entry : cursor) {
-				log.debug("key: " + entry.getKey());
-			}
+			cursor.forEach(r -> {
+				log.debug("SQ key: " + r.getKey());
+			});
 		}
 
 	}
