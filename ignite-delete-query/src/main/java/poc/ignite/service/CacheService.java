@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import lombok.extern.slf4j.Slf4j;
 import poc.ignite.domain.Person;
+import poc.ignite.domain.PersonKey;
 
 @Slf4j
 @Service
@@ -23,13 +24,13 @@ public class CacheService {
 
 	@Autowired
 	private Ignite ignite;
-	private IgniteCache<Integer, Person> personCache;
+	private IgniteCache<PersonKey, Person> personCache;
 
 	private void createCaches() {
 		log.debug("createCaches service");
 
 		CacheConfiguration<Integer, Person> personCacheConfig = new CacheConfiguration<>("person-cache");
-		personCacheConfig.setIndexedTypes(Integer.class, Person.class);
+		personCacheConfig.setIndexedTypes(PersonKey.class, Person.class);
 		personCacheConfig.setCacheMode(CacheMode.PARTITIONED);
 		personCacheConfig.setSqlSchema("ip");
 
@@ -42,7 +43,7 @@ public class CacheService {
 		log.debug("loadCaches service");
 
 		for (int i = 1; i <= 5; i++) {
-			personCache.put(i, new Person(i, "p" + i, i, i));
+			personCache.put(new PersonKey(i, "p" + i), new Person(i, "p" + i, i, i));
 		}
 
 		personCache.forEach(p -> {
