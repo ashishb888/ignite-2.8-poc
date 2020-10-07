@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Bean;
 
 import lombok.extern.slf4j.Slf4j;
 import poc.ignite.service.CacheService;
+import poc.ignite.service.ContinuousQueriesService;
 
 @Slf4j
 @SpringBootApplication
@@ -16,6 +17,8 @@ public class IgniteDeleteQueryApplication {
 
 	@Autowired
 	private CacheService cs;
+	@Autowired
+	private ContinuousQueriesService cqs;
 
 	public static void main(String[] args) {
 		SpringApplication.run(IgniteDeleteQueryApplication.class, args);
@@ -25,8 +28,12 @@ public class IgniteDeleteQueryApplication {
 	public CommandLineRunner commandLineRunner(ApplicationContext ac) {
 		return args -> {
 			log.debug("commandLineRunner service");
-
+			cqs.main();
 			cs.main();
 		};
+	}
+
+	private void deleteCQ() {
+
 	}
 }
