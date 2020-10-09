@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: ignite-spring-resource
+
+
+logging:  file:    name: /var/tmp/logs/${spring.application.name}/${spring.application.name}
