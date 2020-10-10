@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: ignite-spring-resoure-compute-client
+  
+  autoconfigure:    exclude:    - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+    - org.springframework.boot.autoconfigure.h2.H2ConsoleAutoConfiguration
+ 
+    
+logging:  file:    name: /var/tmp/logs/${spring.application.name}/${spring.application.name}
