@@ -66,7 +66,7 @@ public class BeansConfig {
 			igniteConfiguration.setIncludeEventTypes();
 			igniteConfiguration.setPublicThreadPoolSize(16);
 			igniteConfiguration.setSystemThreadPoolSize(16);
-			igniteConfiguration.setPeerClassLoadingEnabled(false);
+			igniteConfiguration.setPeerClassLoadingEnabled(true);
 			igniteConfiguration.setGridLogger(new Slf4jLogger());
 			igniteConfiguration.setWorkDirectory("/var/tmp/ignite/work");
 
