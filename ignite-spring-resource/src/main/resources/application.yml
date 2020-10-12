@@ -6,3 +6,5 @@ spring:
     - org.springframework.boot.autoconfigure.h2.H2ConsoleAutoConfiguration
 
 logging:  file:    name: /var/tmp/logs/${spring.application.name}/${spring.application.name}
+  level:    root: info
+    poc.ignite: debug
