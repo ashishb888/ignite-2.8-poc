@@ -7,3 +7,5 @@ spring:
  
     
 logging:  file:    name: /var/tmp/logs/${spring.application.name}/${spring.application.name}
+  level:    root: info
+    poc.ignite: debug
