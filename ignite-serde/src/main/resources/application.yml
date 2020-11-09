@@ -2,6 +2,11 @@ spring:
   application:
     name: ignite-serde
 
+  autoconfigure:
+    exclude:
+    - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+    - org.springframework.boot.autoconfigure.h2.H2ConsoleAutoConfiguration
+    
 logging:
   file: /var/tmp/logs/ignite-serde/ignite-serde
   level:
