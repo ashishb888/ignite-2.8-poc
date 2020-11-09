@@ -33,6 +33,12 @@ public class TestServiceImpl implements TestService {
 		SqlFieldsQuery query = new SqlFieldsQuery("select _val from Person limit ?");
 		query.setArgs(5);
 
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			log.error(e.getMessage(), e);
+		}
+
 		try (QueryCursor<List<?>> cursor = personCache.query(query)) {
 			List<?> records = cursor.getAll();
 

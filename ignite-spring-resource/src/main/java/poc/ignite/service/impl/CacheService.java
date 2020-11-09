@@ -2,6 +2,7 @@ package poc.ignite.service.impl;
 
 import org.apache.ignite.Ignite;
 import org.apache.ignite.IgniteCache;
+import org.apache.ignite.IgniteSpringBean;
 import org.apache.ignite.cache.CacheMode;
 import org.apache.ignite.configuration.CacheConfiguration;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,13 +15,15 @@ import poc.ignite.domain.Person;
 @Slf4j
 public class CacheService {
 
+//	@Autowired
+//	private Ignite ignite;
 	@Autowired
-	private Ignite ignite;
+	private IgniteSpringBean igniteSpringBean;
 
 	private void loadCaches() {
 		log.debug("loadCaches service");
 
-		IgniteCache<Integer, Person> personCache = ignite.cache("person-cache");
+		IgniteCache<Integer, Person> personCache = igniteSpringBean.cache("person-cache");
 
 		for (int i = 1; i <= 50; i++) {
 			personCache.put(i, new Person(i, "p" + i, i, i));
@@ -35,8 +38,8 @@ public class CacheService {
 		personCacheConfig.setCacheMode(CacheMode.PARTITIONED);
 		personCacheConfig.setSqlSchema("ip");
 
-		ignite.addCacheConfiguration(personCacheConfig);
-		ignite.getOrCreateCache(personCacheConfig.getName());
+		igniteSpringBean.addCacheConfiguration(personCacheConfig);
+		igniteSpringBean.getOrCreateCache(personCacheConfig.getName());
 	}
 
 	private void init() {
