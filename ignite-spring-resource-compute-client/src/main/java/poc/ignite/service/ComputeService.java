@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import org.apache.ignite.Ignite;
+import org.apache.ignite.IgniteSpringBean;
 import org.apache.ignite.lang.IgniteCallable;
 import org.apache.ignite.resources.IgniteInstanceResource;
 import org.apache.ignite.resources.SpringApplicationContextResource;
@@ -20,21 +21,25 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 public class ComputeService {
 
+//	@Autowired
+//	private Ignite ignite;
+
 	@Autowired
-	private Ignite ignite;
+	private IgniteSpringBean igniteSpringBean;
 
 	private void affinityCall() {
 		log.debug("affinityCall service");
 
 		String cacheName = "person-cache";
 
-		List<Integer> affKeys = IntStream.range(1, 51).boxed().collect(Collectors.toList());
+		List<Integer> affKeys = IntStream.range(1, 5).boxed().collect(Collectors.toList());
 		// IntStream.iterate(1, i -> i +
 		// 1).limit(50).boxed().collect(Collectors.toList());
 		Thread t = new Thread(() -> {
 			while (true) {
 				affKeys.forEach(affKey -> {
-					long records = ignite.compute().affinityCall(cacheName, affKey, new ICCall(affKey, cacheName));
+					long records = igniteSpringBean.compute().affinityCall(cacheName, affKey,
+							new ICCall(affKey, cacheName));
 					log.debug("records: " + records);
 				});
 
@@ -57,7 +62,7 @@ public class ComputeService {
 		@IgniteInstanceResource
 		private Ignite ignite;
 		@SpringResource(resourceName = "testService")
-		private TestService ts;
+		private transient TestService ts;
 		@SpringApplicationContextResource
 		private ApplicationContext ac;
 
